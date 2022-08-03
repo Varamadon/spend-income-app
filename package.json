@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "firebase": "^9.9.1",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
