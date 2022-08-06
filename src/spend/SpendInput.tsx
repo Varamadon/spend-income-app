@@ -3,10 +3,9 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import Button from '@mui/material/Button';
+import Container from "@mui/material/Container";
 
 export default function SpendInput() {
     const [value, setValue] = React.useState<Date | null>(
@@ -18,35 +17,52 @@ export default function SpendInput() {
     };
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Stack spacing={3}>
-                <DesktopDatePicker
-                    label="Date desktop"
-                    inputFormat="MM/dd/yyyy"
-                    value={value}
-                    onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <MobileDatePicker
-                    label="Date mobile"
-                    inputFormat="MM/dd/yyyy"
-                    value={value}
-                    onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <TimePicker
-                    label="Time"
-                    value={value}
-                    onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <DateTimePicker
-                    label="Date&Time picker"
-                    value={value}
-                    onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </Stack>
-        </LocalizationProvider>
+        <Container maxWidth="xs">
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Stack spacing={3}>
+                    <DesktopDatePicker
+                        label="Date of spending"
+                        inputFormat="dd/MM/yyyy"
+                        value={value}
+                        onChange={handleChange}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="category"
+                        label="Category of spending"
+                        type="text"
+                        id="category"
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="amount"
+                        label="Amount of spending"
+                        type="number"
+                        id="amount"
+                    />
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        name="comment"
+                        label="Commentary"
+                        type="text"
+                        id="comment"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Submit
+                    </Button>
+                </Stack>
+            </LocalizationProvider>
+        </Container>
     );
 }
